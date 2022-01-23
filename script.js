@@ -2,6 +2,7 @@ let choices = ["Rock", "Paper", "Scissors"];
 
 function computerPlay() {
 	let choiceNumber = Math.floor(Math.random() * 3);
+	console.log(`Computer played ${choices[choiceNumber]}`);
 	return choices[choiceNumber];
 }
 
@@ -31,27 +32,13 @@ function playRound(playerSelection, computerSelection) {
 	return result;
 }
 
-function game() {
-	let playerScore = 0;
-	let computerScore = 0;
-	for (let i = 0; i < 5; i++) {
-		let playerSelection = parseInt(
-			prompt("Enter your move:\n1-Rock  2-Paper  3-Scissors")
-		);
-		let result = playRound(choices[playerSelection - 1], computerPlay());
-		if (result == "win") {
-			playerScore++;
-		} else if (result == "lose") {
-			computerScore++;
-		}
-	}
-	if (playerScore > computerScore) {
-		console.log("You win the series!!!");
-	} else if (computerScore > playerScore) {
-		console.log("You lose! Computer wins the series.");
-	} else {
-		console.log("Draw");
-	}
-}
+const rock = document.querySelector("button#rock");
+// console.log(rock);
+const paper = document.querySelector("button#paper");
+// console.log(paper);
+const scissors = document.querySelector("button#scissors");
+// console.log(scissors);
 
-game();
+rock.addEventListener("click", () => playRound("rock", computerPlay()));
+paper.addEventListener("click", () => playRound("paper", computerPlay()));
+scissors.addEventListener("click", () => playRound("scissors", computerPlay()));
