@@ -1,4 +1,6 @@
 let choices = ["Rock", "Paper", "Scissors"];
+let playerScore = 0;
+let computerScore = 0;
 
 function computerPlay() {
 	let choiceNumber = Math.floor(Math.random() * 3);
@@ -39,6 +41,30 @@ const rock = document.querySelector("button#rock");
 const paper = document.querySelector("button#paper");
 const scissors = document.querySelector("button#scissors");
 
-rock.addEventListener("click", () => playRound("rock", computerPlay()));
-paper.addEventListener("click", () => playRound("paper", computerPlay()));
-scissors.addEventListener("click", () => playRound("scissors", computerPlay()));
+function displayResult(result) {
+	playerScore = 0;
+	computerScore = 0;
+	const h1 = document.querySelector("h1");
+	h1.textContent = result;
+}
+
+function playGame(playerMove) {
+	document.querySelector("h1").textContent = "";
+	let result = playRound(playerMove, computerPlay());
+	if (result == "win") {
+		playerScore++;
+		if (playerScore == 5) {
+			displayResult("WIN");
+		}
+	} else if (result == "lose") {
+		computerScore++;
+		if (computerScore == 5) {
+			displayResult("LOSE");
+		}
+	}
+	console.log(`${playerScore}:${computerScore}`);
+}
+
+rock.addEventListener("click", () => playGame("rock"));
+paper.addEventListener("click", () => playGame("paper"));
+scissors.addEventListener("click", () => playGame("scissors"));
