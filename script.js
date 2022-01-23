@@ -50,7 +50,7 @@ function game() {
 	} else if (computerScore > playerScore) {
 		console.log("You lose! Computer wins the series.");
 	} else {
-		console.log("Draw!");
+		console.log("Draw");
 	}
 }
 
